@@ -1,0 +1,132 @@
+version: '3.8'
+
+services:
+  # -----------------
+  # Databases & Brokers
+  # -----------------
+  postgres:
+    image: postgres:15-alpine
+    container_name: ecommerce-postgres
+    environment:
+      POSTGRES_USER: ecommerce_user
+      POSTGRES_PASSWORD: ecommerce_pass
+      POSTGRES_DB: ecommerce_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ecommerce_user -d ecommerce_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: ecommerce-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: ecommerce-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # -----------------
+  # Microservices
+  # -----------------
+  user-service:
+    build: ./services/user-service
+    container_name: user-service
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env.example
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  product-service:
+    build: ./services/product-service
+    container_name: product-service
+    ports:
+      - "3002:3002"
+    env_file:
+      - .env.example
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  cart-service:
+    build: ./services/cart-service
+    container_name: cart-service
+    ports:
+      - "3003:3003"
+    env_file:
+      - .env.example
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  order-service:
+    build: ./services/order-service
+    container_name: order-service
+    ports:
+      - "3004:3004"
+    env_file:
+      - .env.example
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+  payment-service:
+    build: ./services/payment-service
+    container_name: payment-service
+    ports:
+      - "3005:3005"
+    env_file:
+      - .env.example
+
+  notification-service:
+    build: ./services/notification-service
+    container_name: notification-service
+    ports:
+      - "3006:3006"
+    env_file:
+      - .env.example
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  # -----------------
+  # Frontend
+  # -----------------
+  frontend:
+    build: ./frontend
+    container_name: ecommerce-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - product-service
+      - cart-service
+      - user-service
+      - order-service
+
+volumes:
+  postgres_data:
