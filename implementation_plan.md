@@ -1,29 +1,22 @@
 # Cloud-Native E-commerce Platform Implementation Plan
 
-This plan outlines the architecture and execution strategy for building a production-style E-commerce Microservices project intended for DevOps/SRE portfolio display, targeting recruiters in Europe.
+This plan outlines the architecture and execution strategy for building a production-style E-commerce Microservices project intended for DevOps/SRE portfolio display, targeting recruiters.
 
-## User Review Required
+## Stack
 
-> [!IMPORTANT]
-> Please review the chosen technology stack below before we proceed:
 > - **Backend Framework:** Node.js with Express (clean, standard REST APIs).
 > - **Frontend:** Next.js (React) for a simple but professional UI.
 > - **Databases:** PostgreSQL (Users, Products, Orders) and Redis (Cart).
 > - **Message Broker:** RabbitMQ (for Order -> Notification events).
 > - **Infrastructure/DevOps:** Docker, Kubernetes (Manifests), Terraform (AWS), GitHub Actions, Prometheus + Grafana.
 
-## Open Questions
 
-> [!TIP]
-> 1. Do you have a preference between `npm` or `yarn` for the Node.js projects? We will default to `npm`.
-> 2. For Terraform, we will generate placeholder configurations (e.g., standard AWS EKS/RDS setups). Do you want any specific AWS region pre-configured? (Defaulting to `eu-central-1` as you target Europe).
+## Architecture and Steps
 
-## Proposed Architecture and Steps
-
-The project will be built incrementally.
+The project built incrementally.
 
 ### Phase 1: Folder Structure Initialization
-We will create the core repository structure:
+Core repository structure:
 - `/frontend`
 - `/services` (user, product, cart, order, payment, notification)
 - `/infrastructure` (terraform, kubernetes)
@@ -32,7 +25,7 @@ We will create the core repository structure:
 - `/.github/workflows`
 
 ### Phase 2: Backend Microservices Development
-For each microservice, we will create a `package.json`, a basic entry point (`server.js`), health check routes, Prometheus metrics, and basic business logic matching your requirements.
+For each microservice, thre is a `package.json`, a basic entry point (`server.js`), health check routes, Prometheus metrics, and basic business logic.
 - **user-service:** JWT auth, simple user profile API.
 - **product-service:** Product listing, stock info.
 - **cart-service:** Redis integration, add/remove items.
@@ -75,7 +68,7 @@ For each microservice, we will create a `package.json`, a basic entry point (`se
 ## Verification Plan
 
 ### Local Verification
-- Run `docker compose up --build` to verify all services start successfully without errors.
+- Run `docker compose up --build` to verify all services.
 - Test cross-service communication (e.g., creating an order publishes an event consumed by the notification service).
 - Access the frontend via browser.
 - Use `curl` to hit the API endpoints and ensure they return expected results (e.g., 200 OK, JSON payloads).
