@@ -28,8 +28,8 @@ graph TD
     RabbitMQ -- "Consumes Event" --> NotifSVC[Notification Service]
 ```
 
-## Why this project is relevant for DevOps / SRE roles in Europe
-This project was designed from the ground up to reflect realistic European tech hub requirements for DevOps and SRE roles:
+## Why this project is relevant for DevOps / SRE roles
+This project was designed from the ground up to reflect realistic tech requirements for DevOps and SRE roles:
 - **Cloud-Native Microservices:** Event-driven architecture using RabbitMQ, preventing tight coupling between the Order and Notification domains.
 - **Kubernetes Production Patterns:** Implementation includes Deployments, StatefulSets, Ingress, Services, ConfigMaps, Secrets, resource limits/requests, and probes (liveness/readiness).
 - **CI/CD Automation:** GitHub Actions pipeline configured for automated testing, multi-arch Docker image builds, security scanning (Trivy), and deployment.
@@ -85,7 +85,7 @@ curl http://localhost:3001/health
 ```
 
 ## Documentation Links
-- [Interview Explanation Guide](./docs/interview-explanation.md) - Deep dive into architecture and design choices.
+- [Recruiter Explanation Guide](./docs/interview-explanation.md) - Deep dive into architecture and design choices.
 - [Production Debugging Scenarios](./docs/production-debugging-scenarios.md) - 10 realistic SRE/DevOps troubleshooting scenarios.
 
 ## Future Improvements
