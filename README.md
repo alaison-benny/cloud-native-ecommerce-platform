@@ -38,6 +38,14 @@ This project was designed from the ground up to reflect realistic European tech 
 - **Security-First Deployment:** Non-root Docker containers, Trivy vulnerability scanning in CI/CD, and JWT-based authentication.
 - **Scalable Architecture:** Stateless Node.js backend services designed to be horizontally scaled via Kubernetes HPA.
 
+## Screenshots
+
+### CloudShop Storefront (Next.js)
+![CloudShop Storefront](./docs/images/ecommerce_storefront.png)
+
+### Grafana Observability Dashboard
+![Grafana Dashboard](./docs/images/grafana_dashboard.png)
+
 ## Folder Structure Explanation
 - `/frontend`: Next.js React application.
 - `/services`: Node.js Express microservices (user, product, cart, order, payment, notification).
