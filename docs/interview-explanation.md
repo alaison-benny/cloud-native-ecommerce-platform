@@ -1,6 +1,6 @@
 # Interview Explanation Guide to Recruiters
 
-This document is intended to explain the architectural and operational decisions made in this project during a DevOps or SRE interview.
+This document is intended to explain the architectural and operational decisions made in this project.
 
 ## 1. How I designed the architecture
 I chose a microservices architecture to ensure independent scalability and maintainability. 
