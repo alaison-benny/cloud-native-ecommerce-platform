@@ -75,6 +75,28 @@ dig <domain-name>
 
 ```
 
+## Cloud Support & Production Operations Documentation
+
+This repository also includes production support and cloud operations documentation to demonstrate practical troubleshooting and incident handling skills.
+
+### Support Documentation
+
+- [Cloud Support Operations Overview](CLOUD_SUPPORT_OPERATIONS.md)
+- [Kubernetes Pod Debugging Runbook](docs/runbooks/kubernetes-pod-debugging-runbook.md)
+- [Deployment Failure Troubleshooting Runbook](docs/runbooks/deployment-failure-runbook.md)
+- [Linux Service Troubleshooting Runbook](docs/runbooks/linux-service-troubleshooting-runbook.md)
+
+### Incident Examples
+
+- [Incident 01 - Pod CrashLoopBackOff](docs/incidents/incident-01-pod-crashloopbackoff.md)
+- [Incident 02 - ImagePullBackOff](docs/incidents/incident-02-imagepullbackoff.md)
+- [Incident 03 - NGINX 502 Bad Gateway](docs/incidents/incident-03-nginx-502-bad-gateway.md)
+- [Incident 04 - Database Connection Failure](docs/incidents/incident-04-database-connection-failure.md)
+
+### Screenshots
+
+- [Monitoring and Troubleshooting Screenshots](docs/screenshots/README.md)
+================================
 
 ## About:
 A production-ready microservices e-commerce application demonstrating Cloud-Native patterns, DevOps best practices, and modern infrastructure deployment.
@@ -105,27 +127,7 @@ graph TD
     RabbitMQ -- "Consumes Event" --> NotifSVC[Notification Service]
 ```
 
-## Cloud Support & Production Operations Documentation
 
-This repository also includes production support and cloud operations documentation to demonstrate practical troubleshooting and incident handling skills.
-
-### Support Documentation
-
-- [Cloud Support Operations Overview](CLOUD_SUPPORT_OPERATIONS.md)
-- [Kubernetes Pod Debugging Runbook](docs/runbooks/kubernetes-pod-debugging-runbook.md)
-- [Deployment Failure Troubleshooting Runbook](docs/runbooks/deployment-failure-runbook.md)
-- [Linux Service Troubleshooting Runbook](docs/runbooks/linux-service-troubleshooting-runbook.md)
-
-### Incident Examples
-
-- [Incident 01 - Pod CrashLoopBackOff](docs/incidents/incident-01-pod-crashloopbackoff.md)
-- [Incident 02 - ImagePullBackOff](docs/incidents/incident-02-imagepullbackoff.md)
-- [Incident 03 - NGINX 502 Bad Gateway](docs/incidents/incident-03-nginx-502-bad-gateway.md)
-- [Incident 04 - Database Connection Failure](docs/incidents/incident-04-database-connection-failure.md)
-
-### Screenshots
-
-- [Monitoring and Troubleshooting Screenshots](docs/screenshots/README.md)
 
 ==============================
 
