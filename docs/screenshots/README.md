@@ -8,6 +8,4 @@ Add screenshots for the following:
 
 ## 1. Grafana Dashboard
 
-File name:
-
 ![Grafana Dashboard](docs/screenshots/grafana-dashboard.png)
