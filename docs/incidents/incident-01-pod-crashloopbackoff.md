@@ -21,33 +21,38 @@ kubectl get events --sort-by=.metadata.creationTimestamp
 
 ```
 ## Investigation Steps
-Checked pod status using kubectl get pods.
-Identified the pod in CrashLoopBackOff state.
-Used kubectl describe pod to check restart count, events, image details, and environment variables.
-Checked application logs using kubectl logs.
-Verified whether required environment variables and secrets were correctly mounted.
-Checked recent deployment changes.
-Root Cause
+- Checked pod status using kubectl get pods.
+- Identified the pod in CrashLoopBackOff state.
+- Used kubectl describe pod to check restart count, events, image details, and environment variables.
+- Checked application logs using kubectl logs.
+- Verified whether required environment variables and secrets were correctly mounted.
+- Checked recent deployment changes.
+
+## Root Cause
 
 The application was failing during startup because a required database environment variable was missing or incorrectly configured.
 
 ## Resolution
-Corrected the missing environment variable in the Kubernetes manifest or Secret.
-Re-applied the Kubernetes configuration.
-Restarted the deployment.
-Verified pod status and application health endpoint.
+- Corrected the missing environment variable in the Kubernetes manifest or Secret.
+- Re-applied the Kubernetes configuration.
+- Restarted the deployment.
+- Verified pod status and application health endpoint.
 ## Fix Commands
+```bash
+
 kubectl apply -f k8s/
 kubectl rollout restart deployment/<deployment-name>
 kubectl get pods
 kubectl logs <pod-name>
 curl http://<application-url>/health
+```
+
 ## Validation
-Pod moved to Running state.
-Restart count stopped increasing.
-Health check returned successful response.
-Application became reachable again.
+- Pod moved to Running state.
+- Restart count stopped increasing.
+- Health check returned successful response.
+- Application became reachable again.
 ## Prevention
-Add environment variable validation in deployment pipeline.
-Maintain separate configuration files for staging and production.
-Add monitoring alert for repeated pod restarts.
+- Add environment variable validation in deployment pipeline.
+- Maintain separate configuration files for staging and production.
+- Add monitoring alert for repeated pod restarts.
