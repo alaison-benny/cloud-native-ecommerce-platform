@@ -13,3 +13,10 @@ This dashboard was used to monitor Kubernetes cluster health, pod status, CPU us
 This dashboard was used to monitor EC2 instance CPU utilization, network traffic, disk read/write activity, status checks, and infrastructure health during cloud operations and troubleshooting activities.
 
 ![AWS CloudWatch Dashboard](cloudwatch-ec2-monitoring-dashboard.png)
+
+
+## Kubernetes Pods Running Status
+
+This screenshot shows Kubernetes workloads running across multiple namespaces during production-style cloud operations monitoring and troubleshooting activities. The environment includes application microservices, monitoring components, and Kubernetes system services.
+
+![Kubernetes Pods Running](kubernetes-pods-running.png)
