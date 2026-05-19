@@ -10,5 +10,4 @@ Add screenshots for the following:
 
 File name:
 
-```text
-grafana-dashboard.png
+![Grafana Dashboard](docs/screenshots/grafana-dashboard.png)
