@@ -1,6 +1,6 @@
-# Cloud-Native E-commerce Platform
 
 # Cloud Support & Production Operations Practice
+## Cloud-Native E-commerce Platform
 
 This project is a production-style cloud operations and support practice environment built to demonstrate real-world troubleshooting, monitoring, incident handling, and deployment support skills.
 
@@ -76,8 +76,7 @@ dig <domain-name>
 ```
 
 
-
-===================================================
+## About:
 A production-ready microservices e-commerce application demonstrating Cloud-Native patterns, DevOps best practices, and modern infrastructure deployment.
 
 ## Architecture Diagram
