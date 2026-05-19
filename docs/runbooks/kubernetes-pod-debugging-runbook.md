@@ -47,8 +47,11 @@ kubectl logs <pod-name> -n <namespace>
 kubectl logs <pod-name> -n <namespace> --previous
 ```
 
-Use ```bash
- --previous ``` when the pod keeps restarting.
+Use 
+```bash
+ --previous
+```
+when the pod keeps restarting.
 
 ## Step 4: Check Events
 ```bash
