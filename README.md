@@ -1,5 +1,83 @@
 # Cloud-Native E-commerce Platform
 
+# Cloud Support & Production Operations Practice
+
+This project is a production-style cloud operations and support practice environment built to demonstrate real-world troubleshooting, monitoring, incident handling, and deployment support skills.
+
+The focus of this project is not only application deployment, but also day-to-day production support activities such as monitoring, log analysis, service health checks, incident investigation, root cause analysis, and recovery actions.
+
+## Environment Overview
+
+The platform includes containerized microservices deployed using Docker and Kubernetes, with monitoring and troubleshooting workflows built around Linux, Kubernetes, AWS-style infrastructure, Prometheus, Grafana, and CI/CD pipelines.
+
+## Support Activities Practiced
+
+- Application health monitoring
+- Kubernetes pod troubleshooting
+- Deployment failure investigation
+- Log analysis using Linux and Kubernetes commands
+- Container restart and crash investigation
+- Service connectivity testing
+- Ingress and routing issue debugging
+- CI/CD pipeline failure analysis
+- Resource usage monitoring
+- Incident documentation and RCA preparation
+- Rollback and recovery validation
+
+## Tools Used
+
+- Linux
+- Docker
+- Kubernetes
+- AWS EC2
+- AWS VPC
+- AWS IAM
+- AWS Load Balancer
+- GitHub Actions
+- Jenkins
+- Prometheus
+- Grafana
+- CloudWatch-style monitoring
+- NGINX
+- PostgreSQL
+- curl
+- systemctl
+- journalctl
+- kubectl
+
+## Troubleshooting Commands Used
+
+```bash
+kubectl get pods -A
+kubectl describe pod <pod-name>
+kubectl logs <pod-name>
+kubectl get events --sort-by=.metadata.creationTimestamp
+kubectl get svc
+kubectl describe svc <service-name>
+kubectl get ingress
+kubectl describe ingress <ingress-name>
+kubectl rollout status deployment/<deployment-name>
+kubectl rollout restart deployment/<deployment-name>
+kubectl top pods
+kubectl top nodes
+docker ps
+docker logs <container-id>
+docker exec -it <container-id> /bin/sh
+systemctl status nginx
+journalctl -u nginx
+df -h
+free -m
+top
+ss -tulnp
+curl -I http://localhost
+nslookup <service-name>
+dig <domain-name>
+
+```
+
+
+
+===================================================
 A production-ready microservices e-commerce application demonstrating Cloud-Native patterns, DevOps best practices, and modern infrastructure deployment.
 
 ## Architecture Diagram
