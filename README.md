@@ -106,7 +106,7 @@ graph TD
 ```
 
 ## Why this project is relevant for Cloud Support / DevOps / SRE roles
-This project was designed from the ground up to reflect realistic tech requirements for DevOps and SRE roles:
+This project was designed from the ground up to reflect realistic tech requirements for Cloud Support, DevOps and SRE roles:
 - **Cloud-Native Microservices:** Event-driven architecture using RabbitMQ, preventing tight coupling between the Order and Notification domains.
 - **Kubernetes Production Patterns:** Implementation includes Deployments, StatefulSets, Ingress, Services, ConfigMaps, Secrets, resource limits/requests, and probes (liveness/readiness).
 - **CI/CD Automation:** GitHub Actions pipeline configured for automated testing, multi-arch Docker image builds, security scanning (Trivy), and deployment.
