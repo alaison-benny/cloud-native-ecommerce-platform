@@ -80,8 +80,6 @@ dig <domain-name>
 This repository also includes production support and cloud operations documentation to demonstrate practical troubleshooting and incident handling skills.
 
 ### Support Documentation
-
-- [Cloud Support Operations Overview](CLOUD_SUPPORT_OPERATIONS.md)
 - [Kubernetes Pod Debugging Runbook](docs/runbooks/kubernetes-pod-debugging-runbook.md)
 - [Deployment Failure Troubleshooting Runbook](docs/runbooks/deployment-failure-runbook.md)
 - [Linux Service Troubleshooting Runbook](docs/runbooks/linux-service-troubleshooting-runbook.md)
@@ -96,7 +94,6 @@ This repository also includes production support and cloud operations documentat
 ### Screenshots
 
 - [Monitoring and Troubleshooting Screenshots](docs/screenshots/README.md)
-================================
 
 ## About:
 A production-ready microservices e-commerce application demonstrating Cloud-Native patterns, DevOps best practices, and modern infrastructure deployment.
