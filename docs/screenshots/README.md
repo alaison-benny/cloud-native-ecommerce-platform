@@ -2,10 +2,8 @@
 
 This folder contains screenshots related to monitoring, alerting, deployment validation, and troubleshooting activities.
 
-## Screenshots To Add
+## Grafana Monitoring Dashboard
 
-Add screenshots for the following:
-
-## 1. Grafana Dashboard
+This dashboard was used to monitor Kubernetes cluster health, pod status, CPU usage, memory usage, filesystem utilization, and infrastructure metrics during production-style troubleshooting and incident response activities.
 
 ![Grafana Dashboard](docs/screenshots/grafana-dashboard.png)
