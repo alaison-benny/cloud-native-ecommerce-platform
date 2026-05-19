@@ -126,8 +126,6 @@ graph TD
 
 
 
-==============================
-
 ## Why this project is relevant for Cloud Support / DevOps / SRE roles
 This project was designed from the ground up to reflect realistic tech requirements for Cloud Support, DevOps and SRE roles:
 - **Cloud-Native Microservices:** Event-driven architecture using RabbitMQ, preventing tight coupling between the Order and Notification domains.
@@ -143,8 +141,6 @@ This project was designed from the ground up to reflect realistic tech requireme
 ### CloudShop Storefront (Next.js)
 ![CloudShop Storefront](./docs/images/ecommerce_storefront.png)
 
-### Grafana Observability Dashboard
-![Grafana Dashboard](./docs/images/grafana_dashboard.png)
 
 ## Folder Structure Explanation
 - `/frontend`: Next.js React application.
