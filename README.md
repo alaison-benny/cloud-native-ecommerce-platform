@@ -1,191 +1,470 @@
+# Cloud Native E-Commerce Platform
 
-# Cloud Support & Production Operations Practice
-## Cloud-Native E-commerce Platform
+---
 
-This project is a production-style cloud operations and support practice environment built to demonstrate real-world troubleshooting, monitoring, incident handling, and deployment support skills.
+# 1. Project Introduction
 
-The focus of this project is not only application deployment, but also day-to-day production support activities such as monitoring, log analysis, service health checks, incident investigation, root cause analysis, and recovery actions.
+Hello Recruiter, let me walk you through a Cloud Native E-Commerce Platform project.
 
-## Environment Overview
+This project demonstrates how a modern e-commerce application can be built using microservices architecture, containerization, cloud infrastructure, Kubernetes, and CI/CD practices.
 
-The platform includes containerized microservices deployed using Docker and Kubernetes, with monitoring and troubleshooting workflows built around Linux, Kubernetes, AWS-style infrastructure, Prometheus, Grafana, and CI/CD pipelines.
+The objective is to provide a scalable, highly available, and production-ready online shopping platform.
 
-## Support Activities Practiced
+This project showcases:
 
-- Application health monitoring
-- Kubernetes pod troubleshooting
-- Deployment failure investigation
-- Log analysis using Linux and Kubernetes commands
-- Container restart and crash investigation
-- Service connectivity testing
-- Ingress and routing issue debugging
-- CI/CD pipeline failure analysis
-- Resource usage monitoring
-- Incident documentation and RCA preparation
-- Rollback and recovery validation
+* Microservices Architecture
+* Cloud Native Design
+* Kubernetes Deployment
+* CI/CD Automation
+* Monitoring and Observability
+* End-to-End DevOps Practices
 
-## Tools Used
+---
 
-- Linux
-- Docker
-- Kubernetes
-- AWS EC2
-- AWS VPC
-- AWS IAM
-- AWS Load Balancer
-- GitHub Actions
-- Jenkins
-- Prometheus
-- Grafana
-- CloudWatch-style monitoring
-- NGINX
-- PostgreSQL
-- curl
-- systemctl
-- journalctl
-- kubectl
+# 2. Business Problem
 
-## Troubleshooting Commands Used
+Traditional monolithic e-commerce applications face challenges such as:
 
-```bash
-kubectl get pods -A
-kubectl describe pod <pod-name>
-kubectl logs <pod-name>
-kubectl get events --sort-by=.metadata.creationTimestamp
-kubectl get svc
-kubectl describe svc <service-name>
-kubectl get ingress
-kubectl describe ingress <ingress-name>
-kubectl rollout status deployment/<deployment-name>
-kubectl rollout restart deployment/<deployment-name>
-kubectl top pods
-kubectl top nodes
-docker ps
-docker logs <container-id>
-docker exec -it <container-id> /bin/sh
-systemctl status nginx
-journalctl -u nginx
-df -h
-free -m
-top
-ss -tulnp
-curl -I http://localhost
-nslookup <service-name>
-dig <domain-name>
+* Difficult scaling
+* Longer deployment cycles
+* Higher downtime during releases
+* Tight coupling between components
+* Limited flexibility for future enhancements
 
-```
+The goal of this platform is to create a scalable and resilient architecture that supports business growth and faster feature delivery.
 
-## Cloud Support & Production Operations Documentation
+---
 
-This repository also includes production support and cloud operations documentation to demonstrate practical troubleshooting and incident handling skills.
+# 3. My Role as Technical Project Manager
 
-### Support Documentation
-- [Kubernetes Pod Debugging Runbook](docs/runbooks/kubernetes-pod-debugging-runbook.md)
-- [Deployment Failure Troubleshooting Runbook](docs/runbooks/deployment-failure-runbook.md)
-- [Linux Service Troubleshooting Runbook](docs/runbooks/linux-service-troubleshooting-runbook.md)
+From a TPM perspective, my responsibilities include:
 
-### Incident Examples
+* Managing project delivery
+* Coordinating Development, QA, DevOps, and Product teams
+* Sprint planning and tracking
+* Stakeholder communication
+* Release management
+* Risk and dependency management
+* Production deployment coordination
 
-- [Incident 01 - Pod CrashLoopBackOff](docs/incidents/incident-01-pod-crashloopbackoff.md)
-- [Incident 02 - ImagePullBackOff](docs/incidents/incident-02-imagepullbackoff.md)
-- [Incident 03 - NGINX 502 Bad Gateway](docs/incidents/incident-03-nginx-502-bad-gateway.md)
-- [Incident 04 - Database Connection Failure](docs/incidents/incident-04-database-connection-failure.md)
+My focus is ensuring successful delivery while balancing business and technical priorities.
 
-### Screenshots
+---
 
-- [Monitoring and Troubleshooting Screenshots](docs/screenshots/README.md)
+# 4. High-Level Architecture
 
-## About:
-A production-ready microservices e-commerce application demonstrating Cloud-Native patterns, DevOps best practices, and modern infrastructure deployment.
+The platform follows a microservices architecture.
 
-## Architecture Diagram
+Customer
 
-```mermaid
-graph TD
-    Client[Client Browser] --> Ingress[Nginx Ingress / API Gateway]
-    
-    Ingress --> Frontend[Frontend Next.js]
-    Ingress --> UserSVC[User Service]
-    Ingress --> ProductSVC[Product Service]
-    
-    Frontend --> UserSVC
-    Frontend --> ProductSVC
-    Frontend --> CartSVC[Cart Service]
-    Frontend --> OrderSVC[Order Service]
-    Frontend --> PaymentSVC[Payment Service]
-    
-    UserSVC --> PG[(PostgreSQL)]
-    ProductSVC --> PG
-    OrderSVC --> PG
-    
-    CartSVC --> Redis[(Redis Cache)]
-    
-    OrderSVC -- "Publishes Event" --> RabbitMQ[RabbitMQ]
-    RabbitMQ -- "Consumes Event" --> NotifSVC[Notification Service]
-```
+↓
 
+Frontend Application
 
+↓
 
-## Why this project is relevant for Cloud Support / DevOps / SRE roles
-This project was designed from the ground up to reflect realistic tech requirements for Cloud Support, DevOps and SRE roles:
-- **Cloud-Native Microservices:** Event-driven architecture using RabbitMQ, preventing tight coupling between the Order and Notification domains.
-- **Kubernetes Production Patterns:** Implementation includes Deployments, StatefulSets, Ingress, Services, ConfigMaps, Secrets, resource limits/requests, and probes (liveness/readiness).
-- **CI/CD Automation:** GitHub Actions pipeline configured for automated testing, multi-arch Docker image builds, security scanning (Trivy), and deployment.
-- **Infrastructure as Code (IaC):** Terraform modules define the AWS VPC, EKS Cluster, RDS, and ElastiCache components.
-- **Observability:** Built-in Prometheus metrics exposition (`prom-client`) for all Node.js services and ready-to-import Grafana dashboards.
-- **Security-First Deployment:** Non-root Docker containers, Trivy vulnerability scanning in CI/CD, and JWT-based authentication.
-- **Scalable Architecture:** Stateless Node.js backend services designed to be horizontally scaled via Kubernetes HPA.
+API Gateway
 
-## Screenshots
+↓
 
-### CloudShop Storefront (Next.js)
-![CloudShop Storefront](./docs/images/ecommerce_storefront.png)
+Microservices Layer
 
+* Product Service
+* User Service
+* Cart Service
+* Order Service
+* Payment Service
 
-## Folder Structure Explanation
-- `/frontend`: Next.js React application.
-- `/services`: Node.js Express microservices (user, product, cart, order, payment, notification).
-- `/infrastructure`: 
-  - `/kubernetes`: Raw YAML manifests for local testing or CI/CD deployment.
-  - `/terraform`: AWS IaC configuration.
-- `/monitoring`: Prometheus config and Grafana dashboards.
-- `/.github/workflows`: CI/CD definitions.
-- `/docs`: Detailed explanations and troubleshooting guides.
+↓
 
-## Local Setup Guide
+Database Layer
 
-### Docker Compose Setup
-Run the entire platform locally using Docker Compose:
+↓
 
-1. Clone the repository.
-2. Copy `.env.example` to `.env` (optional, the example values are defaults).
-3. Run the stack:
-   ```bash
-   docker compose up --build
-   ```
-4. Access the application:
-   - Frontend: `http://localhost:3000`
-   - User Service: `http://localhost:3001`
-   - Product Service: `http://localhost:3002`
+Monitoring & Logging
 
-### Testing APIs using cURL
+Each service is independently deployable and scalable.
 
-**Get Products:**
-```bash
-curl http://localhost:3002/api/products
-```
+This improves flexibility, reliability, and maintainability.
 
-**Health Check:**
-```bash
-curl http://localhost:3001/health
-```
+---
 
-## Documentation Links
-- [Recruiter Explanation Guide](./docs/interview-explanation.md) - Deep dive into architecture and design choices.
-- [Production Debugging Scenarios](./docs/production-debugging-scenarios.md) - 10 realistic SRE/DevOps troubleshooting scenarios.
+# 5. Technology Stack
 
-## Future Improvements
-- Implement HashiCorp Vault for secret management.
-- Switch to Helm charts for Kubernetes deployments.
-- Add OpenTelemetry tracing (Jaeger).
-- Add Service Mesh (Istio) for mTLS.
+Frontend
+
+* React
+
+Backend
+
+* Java / Spring Boot Microservices
+
+Cloud Platform
+
+* AWS
+
+Containerization
+
+* Docker
+
+Container Orchestration
+
+* Kubernetes
+
+Infrastructure as Code
+
+* Terraform
+
+CI/CD
+
+* GitHub Actions
+
+GitOps
+
+* ArgoCD
+
+Monitoring
+
+* Prometheus
+* Grafana
+
+Project Management
+
+* Jira
+* Confluence
+
+---
+
+# 6. Business Flow Demonstration
+
+Let me walk through a customer journey.
+
+Step 1:
+
+Customer browses products.
+
+↓
+
+Step 2:
+
+Customer adds products to cart.
+
+↓
+
+Step 3:
+
+Customer places an order.
+
+↓
+
+Step 4:
+
+Payment is processed.
+
+↓
+
+Step 5:
+
+Order confirmation is generated.
+
+↓
+
+Step 6:
+
+Customer receives order updates.
+
+This demonstrates how multiple services work together to complete a business transaction.
+
+---
+
+# 7. Why Microservices?
+
+Instead of one large application:
+
+We divide functionality into smaller services.
+
+Benefits:
+
+* Independent deployment
+* Faster releases
+* Better scalability
+* Easier maintenance
+* Fault isolation
+
+For example:
+
+If Product Service needs changes,
+
+We can deploy only that service without impacting other services.
+
+---
+
+# 8. Containerization with Docker
+
+Each microservice runs inside a Docker container.
+
+Benefits:
+
+* Consistent environments
+* Easy deployments
+* Faster scaling
+* Simplified maintenance
+
+Developers, QA, and Production all use the same container image.
+
+---
+
+# 9. Kubernetes Deployment
+
+Kubernetes manages all containers.
+
+Responsibilities include:
+
+* Service deployment
+* Load balancing
+* Auto scaling
+* Self-healing
+* High availability
+
+If one container fails:
+
+Kubernetes automatically replaces it.
+
+This improves reliability and uptime.
+
+---
+
+# 10. CI/CD Pipeline
+
+One of the key strengths of this project is automation.
+
+Deployment flow:
+
+Developer Commit
+
+↓
+
+GitHub Repository
+
+↓
+
+GitHub Actions
+
+↓
+
+Build Process
+
+↓
+
+Testing
+
+↓
+
+Docker Image Creation
+
+↓
+
+Container Registry
+
+↓
+
+ArgoCD Deployment
+
+↓
+
+Kubernetes Cluster
+
+↓
+
+Production
+
+Benefits:
+
+* Faster releases
+* Reduced manual effort
+* Better deployment consistency
+* Lower risk of deployment failures
+
+---
+
+# 11. Infrastructure as Code
+
+Infrastructure is managed using Terraform.
+
+Benefits:
+
+* Repeatable environments
+* Faster provisioning
+* Reduced manual configuration
+* Better governance and control
+
+Infrastructure becomes version controlled just like application code.
+
+---
+
+# 12. Monitoring and Observability
+
+Production monitoring is critical for e-commerce platforms.
+
+This project uses:
+
+## Prometheus
+
+Used for:
+
+* Metrics collection
+* Service health monitoring
+* Resource utilization tracking
+
+## Grafana
+
+Used for:
+
+* Dashboards
+* Business visibility
+* Operational monitoring
+
+Important Metrics:
+
+* Response times
+* Error rates
+* Order processing success rate
+* CPU utilization
+* Memory utilization
+
+---
+
+# 13. Risk Management Approach
+
+As a TPM, I would actively manage risks such as:
+
+* Release failures
+* Payment integration issues
+* High production traffic
+* Infrastructure outages
+* Service dependencies
+* Security vulnerabilities
+
+Mitigation:
+
+* Rollback strategy
+* Monitoring alerts
+* Load testing
+* Dependency tracking
+* Production readiness reviews
+
+---
+
+# 14. Agile Delivery Approach
+
+A sample delivery roadmap:
+
+Sprint 1
+
+* Requirement gathering
+* Architecture design
+
+Sprint 2
+
+* User Management Service
+
+Sprint 3
+
+* Product Catalog Service
+
+Sprint 4
+
+* Cart and Order Services
+
+Sprint 5
+
+* Payment Integration
+
+Sprint 6
+
+* CI/CD Setup
+
+Sprint 7
+
+* Kubernetes Deployment
+
+Sprint 8
+
+* Monitoring and UAT
+
+Sprint 9
+
+* Production Release
+
+Throughout the project:
+
+* Daily Standups
+* Sprint Planning
+* Sprint Reviews
+* Retrospectives
+* Stakeholder Demos
+
+---
+
+# 15. Release Management
+
+Before every production deployment:
+
+* Code Review Completed
+* QA Signoff Completed
+* Security Validation Completed
+* Deployment Validation Completed
+* Rollback Plan Ready
+
+This reduces deployment risks significantly.
+
+---
+
+# 16. Scalability Strategy
+
+As business grows:
+
+* Additional Kubernetes pods can be added.
+* Services can scale independently.
+* Load balancing distributes traffic efficiently.
+* Cloud resources can scale dynamically.
+
+This enables the platform to support increasing customer demand.
+
+---
+
+# 17. Business Benefits
+
+This platform provides:
+
+* Faster feature releases
+* Improved scalability
+* Better reliability
+* Reduced downtime
+* Faster recovery from failures
+* Better customer experience
+
+---
+
+# 18. Project Outcome
+
+This project demonstrates:
+
+* Cloud Native Architecture
+* Microservices Design
+* Kubernetes Orchestration
+* CI/CD Automation
+* Infrastructure as Code
+* Monitoring & Observability
+
+From a Technical Project Manager perspective, it highlights:
+
+* Delivery Ownership
+* Stakeholder Management
+* Agile Execution
+* Release Management
+* Risk Management
+* Technical Understanding
+* Cross-functional Team Coordination
+
+Thank you. I would be happy to discuss the architecture, CI/CD pipeline, Kubernetes deployment strategy, monitoring setup, or project delivery approach in more detail.
